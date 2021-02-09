@@ -2,7 +2,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');                                                                                     
 // Inquirer prompts for userResponses
-inquierer.prompt([
+inquirer.prompt([
     {
         type: 'input',
         message: "What is your GitHub username? (No @ necessary)",
@@ -107,6 +107,10 @@ inquierer.prompt([
     ## Usage
     
     ${response.usage}
+
+    ## Contributions
+
+    ${response.contributing}
     
     ## Tests
     
@@ -125,7 +129,7 @@ inquierer.prompt([
     
     Github: [${response.username}](github.com/${response.repo})
     `
-      fs.writeFile('README.md', readME, (err) =>
+      fs.writeFile('README.md', content, (err) =>
         err ? console.error(err) : console.log('Finished!'))
     
     });
