@@ -2,18 +2,23 @@
 const inquirer = require('inquirer');
 const fs = require('fs');                                                                                     
 // Inquirer prompts for userResponses
-const questions = [
+inquierer.prompt([
     {
         type: 'input',
         message: "What is your GitHub username? (No @ necessary)",
         name: 'username',
-        default: 'dev',
+        default: 'dwill629',
         validate: function (answer) {
             if (answer.length < 1) {
                 return console.log("A valid GitHub username is required.");
             }
             return true;
         }
+    },
+    {
+        type: 'input',
+        message: "What is your email address?",
+        name: 'email'
     },
     {
         type: 'input',
@@ -77,4 +82,50 @@ const questions = [
         choices: ['GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense', 'None'],
         name: 'license'
     }
-];
+
+]).then(response => {
+      const content = `
+      # ${response.title}
+      
+      ## Table of Contents
+    
+    * [Installation](#installation)
+    * [Usage](#Usage)
+    * [Contributions](#Contributions)
+    * [Tests](#Tests)
+    * [License](#License)
+    * [Questions](#Questions)
+    
+    
+    ## Installation
+    
+    To install the proper dependencies, please use the following command:
+    \`\`\`
+    ${response.installation}
+    \`\`\`
+    
+    ## Usage
+    
+    ${response.usage}
+    
+    ## Tests
+    
+    \`\`\`
+    ${response.tests}
+    \`\`\`
+    
+    ## License
+    
+    This application is protected by the ${response.license} license. 
+    
+    ## Questions
+    
+    For any questions relating to this application, please reach out to me at the following:
+    Email: ${response.email}
+    
+    Github: [${response.username}](github.com/${response.repo})
+    `
+      fs.writeFile('README.md', readME, (err) =>
+        err ? console.error(err) : console.log('Finished!'))
+    
+    });
