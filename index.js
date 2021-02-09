@@ -85,9 +85,13 @@ inquirer.prompt([
 
 ]).then(response => {
       const content = `
-      # ${response.title}
+    # ${response.title}
+
+    # Description
+
+    ${response.description}
       
-      ## Table of Contents
+    ## Table of Contents
     
     * [Installation](#installation)
     * [Usage](#Usage)
